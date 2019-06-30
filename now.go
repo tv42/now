@@ -1,7 +1,3 @@
-// Copyright 2012 The Go Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style
-// license that can be found in the LICENSE file.
-
 // Now tells what time it is in other time zones. The first argument
 // identifies a time zone either by shorthand (EST, NYC) or by time zone
 // file base name, such as Yellowknife or Paris.
@@ -11,7 +7,7 @@
 // 	% now Adelaide
 // 	Thu Apr 12 23:26:14 CST 2012 Adelaide
 // 	%
-package main // import "robpike.io/cmd/now"
+package main
 
 import (
 	"fmt"
