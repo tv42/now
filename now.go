@@ -10,17 +10,33 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"os"
 	"path/filepath"
 	"time"
 )
 
+var prog = filepath.Base(os.Args[0])
+
+func usage() {
+	fmt.Fprintf(os.Stderr, "Usage of %s:\n", prog)
+	fmt.Fprintf(os.Stderr, "  %s [TIMEZONE]\n", prog)
+	fmt.Fprintf(os.Stderr, "\n")
+	flag.PrintDefaults()
+}
+
 func main() {
+	flag.Usage = usage
+	flag.Parse()
+	if flag.NArg() > 1 {
+		usage()
+		os.Exit(2)
+	}
 	zone := ""
 	t := time.Now()
-	if len(os.Args) > 1 {
-		zone = os.Args[1]
+	if flag.NArg() > 0 {
+		zone = flag.Arg(0)
 		if tz, ok := timeZone[zone]; ok {
 			zone = tz
 		} else if tz, ok = timeZone[toUpper(zone)]; ok {
