@@ -2,11 +2,11 @@
 // identifies a time zone either by shorthand (EST, NYC) or by time zone
 // file base name, such as Yellowknife or Paris.
 //
-// 	% now Paris
-// 	Thu Apr 12 15:55:55 CEST 2012 Paris
-// 	% now Adelaide
-// 	Thu Apr 12 23:26:14 CST 2012 Adelaide
-// 	%
+//     $ now Paris
+//     Sun 2019-06-30 23:03:39 CEST+02:00 Paris
+//     $ now Adelaide
+//     Mon 2019-07-01 06:33:50 ACST+09:30 Adelaide
+//     $
 package main
 
 import (
@@ -28,7 +28,8 @@ func main() {
 		}
 		t = t.In(loadZone(zone))
 	}
-	fmt.Printf("%s %s\n", t.Format(time.UnixDate), zone)
+	const format = "Mon 2006-01-02 15:04:05 MST-07:00"
+	fmt.Printf("%s %s\n", t.Format(format), zone)
 }
 
 func loadZone(zone string) *time.Location {
